@@ -1,0 +1,40 @@
+==================================================================
+ ME319 Assignment 1 - Viscous-Drag Governor (VDG)
+ Reproduction of all reported results.  MATLAB/Octave: 25.2.0.3123386 (R2025b) Update 3
+==================================================================
+
+--- Transfer functions (deviation variables) ---
+Gp(s) = 1 / 1 s^2 + 10.1 s + 1
+Gc(s) = 0.32 / 0.0004 s^2 + 0.004 s + 0.02   [P design]
+Gc(s) = 1.28 s + 0.32 / 0.0016 s^3 + 0.016 s^2 + 0.08 s   [PI design]
+Loop L(s) numerator   (P) = 0.32
+Loop L(s) denominator (P) = 0.0004 s^4 + 0.00804 s^3 + 0.0608 s^2 + 0.206 s + 0.02
+
+--- Characteristic polynomial and closed-loop poles ---
+P  design: char(s) = 0.0004 s^4 + 0.00804 s^3 + 0.0608 s^2 + 0.206 s + 0.34
+P  poles: [-7.61775+2.59458i;-7.61775-2.59458i;-2.43225+2.68499i;-2.43225-2.68499i]
+P  Routh first column: [0.0004 0.00804 0.0505512 0.151924 0.34]
+P  Routh-Hurwitz stable: 1
+PI design: char(s) = 0.0016 s^5 + 0.03216 s^4 + 0.2432 s^3 + 0.824 s^2 + 1.36 s + 0.32
+PI poles: [-7.49749+2.53651i;-7.49749-2.53651i;-2.41322+2.374i;-2.41322-2.374i;-0.278593]
+PI Routh first column: [0.0016 0.03216 0.202205 0.610229 1.23804 0.32]
+PI Routh-Hurwitz stable: 1
+
+P dominant pole -2.432246  ->  wn = 3.6228 rad/s, zeta = 0.6714
+  (closed-form overshoot of an equivalent 2nd-order pair: 5.81 %)
+P droop (steady-state speed error per unit load): 0.0588 (5.88 %)
+
+--- Stability margins ---
+P : gain-crossover 1.5752 rad/s,  PM = 66.34 deg,  GM = 12.01 dB @ 5.0622 rad/s
+PI: gain-crossover 1.5943 rad/s,  PM = 57.05 deg,  GM = 11.56 dB @ 4.9059 rad/s
+
+--- Transient response metrics ---
+case                               w_inf  ss_err[%]   peak[%]   ts2%[s]  ts.5%[s]    xv_inf
++30% load step open loop          0.7001     29.990    29.990     38.96       NaN    1.0000
++30% load step VDG (P)            0.9824      1.765     1.846      1.58       NaN    1.2824
++30% load step VDG (P+reset)      1.0000      0.000     1.767       NaN      5.50    1.3000
+-30% load step open loop          1.2999     29.990    29.990     38.96       NaN    1.0000
+-30% load step VDG (P)            1.0176      1.765     1.846      1.58       NaN    0.7176
+-30% load step VDG (P+reset)      1.0000      0.000     1.767       NaN      5.50    0.7000
+
+Figures written to: D:\courses S5\me319\me319-viscous-drag-governor\sim\..\figs

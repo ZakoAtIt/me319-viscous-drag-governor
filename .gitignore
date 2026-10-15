@@ -1,0 +1,31 @@
+# LaTeX build artifacts
+paper/build/
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.spl
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+paper/_bodyonly.*
+paper/_appendix.*
+paper/_split.py
+
+# MATLAB
+*.asv
+*.m~
+slprj/
+codegen/
+
+# Octave
+octave-workspace
+
+# OS / editors
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
